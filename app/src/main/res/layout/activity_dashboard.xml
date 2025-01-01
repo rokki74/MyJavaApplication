@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,23 +8,14 @@
     tools:context=".DashBoardActivity"
     tools:ignore="HardcodedText">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="128dp"
-        android:background="@drawable/custom_rectangle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageButton
         android:id="@+id/backB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="a Back button"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="?attr/selectableItemBackground"
+        android:contentDescription="a Back button"
         android:padding="14dp"
         android:src="@drawable/ic_menu"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,10 +40,10 @@
         android:id="@+id/logOutB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="a logout button"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="?attr/selectableItemBackground"
+        android:contentDescription="a logout button"
         android:padding="14dp"
         android:src="@drawable/ic_logout"
         app:layout_constraintCircleRadius="24dp"
@@ -74,71 +64,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageButton
+            android:id="@+id/profileB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="290dp"
+            android:layout_marginTop="12dp"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="a profile button"
+            android:padding="12dp"
+            android:src="@drawable/ic_profile" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="FIRSTNAME LASTNAME"
-                android:textAllCaps="true"
-                android:textColor="@color/green"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/todoB"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="140dp"
+            android:layout_marginTop="70dp"
+            android:padding="12dp"
+            android:text="Learners" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="College Name"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginTop="70dp"
+            android:padding="12dp"
+            android:text="College Name"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/todoB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Get Learners"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editProfileB"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="70dp"
+            android:text="EDIT PROFILE"
+            android:textColor="@color/green" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/editProfileB"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="EDIT PROFILE"
-                android:textColor="@color/green"
-                app:layout_constraintBottom_toBottomOf="@+id/todoB"
-                app:layout_constraintStart_toEndOf="@+id/todoB" />
 
-            <ImageButton
-                android:id="@+id/profileB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="a profile button"
-                android:layout_marginEnd="20dp"
-                android:background="?attr/selectableItemBackground"
-                android:padding="12dp"
-                android:src="@drawable/ic_profile"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginEnd="140dp"
+            android:layout_marginBottom="30dp"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="12dp"
+            android:text="FIRSTNAME LASTNAME"
+            android:textAllCaps="true"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
@@ -154,7 +143,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/contributeCard"
+            android:id="@+id/teachersCard"
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:layout_margin="8dp"
@@ -185,7 +174,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="CONTRIBUTE"
+                    android:text="TEACHERS"
                     android:textAllCaps="true"
                     android:textColor="@color/green"
                     android:textSize="14sp"
@@ -201,7 +190,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/practiceCard"
+            android:id="@+id/learnersCard"
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:layout_margin="8dp"
@@ -220,10 +209,11 @@
                     android:id="@+id/image_view20"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:src="@drawable/ic_general"
                     app:layout_constraintBottom_toTopOf="@+id/textView20"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -232,7 +222,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="PRACTICE"
+                    android:text="LEARNERS"
                     android:textAllCaps="true"
                     android:textColor="@color/green"
                     android:textSize="14sp"
@@ -303,6 +293,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_view21" />
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:layout_editor_absoluteX="-62dp"
+                    tools:layout_editor_absoluteY="-58dp">
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -350,6 +348,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_view22" />
 
+                <ImageView
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -357,6 +362,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

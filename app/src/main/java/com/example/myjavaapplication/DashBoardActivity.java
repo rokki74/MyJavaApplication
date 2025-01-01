@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
@@ -16,9 +16,9 @@ import androidx.cardview.widget.CardView;
 import com.example.myjavaapplication.api.ApiClient;
 import com.example.myjavaapplication.api.ApiInterface;
 import com.example.myjavaapplication.api.Student;
+import com.example.myjavaapplication.api.Teacher;
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Callback;
@@ -26,7 +26,13 @@ import retrofit2.Response;
 
 public class DashBoardActivity extends AppCompatActivity {
 
+    private ProgressBar progressBar;
+
+
     private void getStudents() {
+
+        progressBar.setVisibility(View.VISIBLE);
+
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         retrofit2.Call<List<Student>> call = apiInterface.getStudents();
 
@@ -34,13 +40,9 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onResponse(retrofit2.Call<List<Student>> call, Response<List<Student>> response) {
                 if (response.isSuccessful()) {
+                    progressBar.setVisibility(View.GONE);   // Dismiss progress dialog on failure
                     List<Student> students = response.body();
                     // Process the list of students
-//                    ArrayList<Student> studentArrayList = new ArrayList<>(students);
-//
-//                    Intent intent = new Intent(DashBoardActivity.this, StudentListActivity.class);
-//                    intent.putParcelableArrayListExtra("studentList", studentArrayList);
-//                    startActivity(intent);
 
                     Gson gson = new Gson();
                     String jsonStudents = gson.toJson(students);
@@ -52,7 +54,7 @@ public class DashBoardActivity extends AppCompatActivity {
                     Log.d("NetworkResponse", "Received Response: " + response.body().toString());
 
                     for (Student student : students) {
-                        Log.d("DashBoardActivity", "Student: " + student.getTitle() + ", Grade: " + student.getCompleted());
+                        Log.d("DashBoardActivity", "Student: " + student.getAdmission_number() + ", Grade: " + student.getName());
                     }
                     Toast.makeText(DashBoardActivity.this, "Students fetched successfully", Toast.LENGTH_SHORT).show();
                 } else {
@@ -63,16 +65,63 @@ public class DashBoardActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(retrofit2.Call<List<Student>> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);   // Dismiss progressBar on failure
                 Log.e("DashBoardActivity", "Failure: " + t.getMessage());
                 Toast.makeText(DashBoardActivity.this, "Network error", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    private void getTeachers() {
+
+        progressBar.setVisibility(View.VISIBLE);
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        retrofit2.Call<List<Teacher>> call = apiInterface.getTeachers();
+
+        call.enqueue(new Callback<List<Teacher>>() {
+            @Override
+            public void onResponse(retrofit2.Call<List<Teacher>> call, Response<List<Teacher>> response) {
+                if (response.isSuccessful()) {
+                    progressBar.setVisibility(View.GONE);   // Dismiss progress dialog on failure
+                    List<Teacher> teachers = response.body();
+                    // Process the list of teachers
+
+                    Gson gson = new Gson();
+                    String jsonTeachers = gson.toJson(teachers);
+                    Intent intent = new Intent(DashBoardActivity.this, TeacherListActivity.class);
+                    intent.putExtra("teacherListJson", jsonTeachers);
+                    startActivity(intent);
+
+                    // Print the received JSON response to Logcat
+                    Log.d("NetworkResponse", "Received Response: " + response.body().toString());
+
+                    for (Teacher teacher : teachers) {
+                        Log.d("DashBoardActivity", "Student: " + teacher.getTitle() + ", Grade: " + teacher.getCompleted());
+                    }
+                    Toast.makeText(DashBoardActivity.this, "Teachers fetched successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("DashBoardActivity", "Error: " + response.code());
+                    Toast.makeText(DashBoardActivity.this, "Error fetching teachers", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<List<Teacher>> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);   // Dismiss progressBar on failure
+                Log.e("DashBoardActivity", "Failure: " + t.getMessage());
+                Toast.makeText(DashBoardActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        progressBar = findViewById(R.id.progressBar);
 
         // Register all the ImageButtons with their appropriate IDs
         ImageButton backB = (ImageButton) findViewById(R.id.backB);
@@ -84,8 +133,8 @@ public class DashBoardActivity extends AppCompatActivity {
         Button editProfileB = (Button) findViewById(R.id.editProfileB);
 
         // Register all the card views with their appropriate IDs
-        CardView contributeCard = (CardView) findViewById(R.id.contributeCard);
-        CardView practiceCard = (CardView) findViewById(R.id.practiceCard);
+        CardView teachersCard = (CardView) findViewById(R.id.teachersCard);
+        CardView learnersCard = (CardView) findViewById(R.id.learnersCard);
         CardView learnCard = (CardView) findViewById(R.id.learnCard);
         CardView interestsCard = (CardView) findViewById(R.id.interestsCard);
         CardView helpCard = (CardView) findViewById(R.id.helpCard);
@@ -129,16 +178,18 @@ public class DashBoardActivity extends AppCompatActivity {
         });
 
         // Handle each of the cards with the OnClickListener
-        contributeCard.setOnClickListener(new View.OnClickListener() {
+        teachersCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashBoardActivity.this, "Contribute Articles", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashBoardActivity.this, "Acessing the Teachers", Toast.LENGTH_SHORT).show();
+                getTeachers();
             }
         });
-        practiceCard.setOnClickListener(new View.OnClickListener() {
+        learnersCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DashBoardActivity.this, "Practice Programming", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashBoardActivity.this, "Accessing the learners", Toast.LENGTH_SHORT).show();
+                getStudents();
             }
         });
         learnCard.setOnClickListener(new View.OnClickListener() {

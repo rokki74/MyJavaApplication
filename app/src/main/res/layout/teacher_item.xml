@@ -6,49 +6,35 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/studentPosition"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/studentAdmissionNumber"
+        android:id="@+id/teacherPosition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/studentName"
+        android:id="@+id/teacherUserId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/studentClassId"
+        android:id="@+id/teacherId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/studentStream"
+        android:id="@+id/teacherCompleted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/studentCreatedAt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/studentUpdatedAt"
+        android:id="@+id/teacherTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"

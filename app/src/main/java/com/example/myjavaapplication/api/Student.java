@@ -1,36 +1,60 @@
 package com.example.myjavaapplication.api;
 
-public class Student {
-    private int userId; //id
-    private int id; //name
-    private String title; //grade
+import java.time.OffsetDateTime;
 
-    private String completed;
+public class Student {
+    private String admission_number;
+    private String name; //name
+    private int class_id; //grade
+
+    private String stream;
+
+    private OffsetDateTime created_at;
+
+    private OffsetDateTime updated_at;
+
+    private int position;
 
     // Constructor
-    public Student(int userId, int id, String title, String completed) {
-        this.userId = userId;
-        this.id = id;
-        this.title = title;
-        this.completed = completed;
+    public Student(String admission_number, String name, int class_id, String stream, OffsetDateTime created_at, OffsetDateTime updated_at, int position) {
+        this.admission_number = admission_number;
+        this.name = name;
+        this.class_id = class_id;
+        this.stream = stream;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.position = position;
     }
 
     // Getters
-    public int getId() {
-        return id;
+    public String getAdmission_number() {
+
+        return admission_number;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getName() {
+        return name;
     }
 
-    public String getTitle() {
+    public int getClass_id() {
 
-        return title;
+        return class_id;
     }
 
-    public String getCompleted() {
+    public String getStream() {
 
-        return completed;
+        return stream;
+    }
+
+    public OffsetDateTime getCreated_at() {  ;
+        return created_at;
+    }
+
+    public OffsetDateTime getUpdated_at() {
+        return updated_at;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
